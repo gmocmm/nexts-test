@@ -1,6 +1,11 @@
-import ProductListItem from '../../components/Product/ProductListItem';
 import Link from 'next/link';
-const ProductsList = () => {
+import ProductListItem from '../../components/Product/ProductListItem';
+import { IProduct } from '../../interfaces/IProduct';
+import { getProducts } from '../../services/products';
+
+const ProductsList = async () => {
+  const products:IProduct[] = await getProducts();
+
   return (
     <div className='
       grid gap-[1em] 
@@ -9,53 +14,21 @@ const ProductsList = () => {
       lg:grid-cols-[repeat(3,_1fr)]
       xl:grid-cols-[repeat(4,_1fr)]
     '>
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
 
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
-
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
-
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
-
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
-
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
-
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
-
-      <Link
-        href="/products/slug-value"
-      >
-        <ProductListItem />
-      </Link>
+      {
+        products.map((product) => {
+          return (
+            <Link
+              key={`product-item-${product.slug}`}
+              href={ `/products/${product.slug}` }
+            >
+              <ProductListItem 
+                product={ product }
+              />
+            </Link>
+          )
+        })
+      }
     </div>
   )
 }
