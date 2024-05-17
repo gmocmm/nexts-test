@@ -11,8 +11,8 @@ const Menu = () => {
     <ul className="flex p-0 m-0 text-[1.4em]">
       <li className="p-0 m-0 inline-block">
         <Link
-          className={`${pathname === '/' ? 'cursor-default' : ''}`}
-          href="/"
+          className={`${pathname === '/products' ? 'cursor-default' : ''}`}
+          href="/products"
         >
           <FaHouse />
         </Link>

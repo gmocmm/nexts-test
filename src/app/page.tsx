@@ -1,9 +1,5 @@
-import Image from "next/image";
+import { redirect } from 'next/navigation'
 
 export default function Home() {
-  return (
-    <main>
-      <h1>Home - Redirect to Product Lists</h1>
-    </main>
-  );
+  redirect('/products')
 }
