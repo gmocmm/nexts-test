@@ -1,6 +1,6 @@
 import DetailsWrapper from '../../components/DetailsWrapper';
-import TitleNavigation from '../../components/Navigation/TitleNavigation/index';
-import ProductCartItem from '../../components/Product/ProductCartItem/index';
+import TitleNavigation from '../../components/Navigation/TitleNavigation';
+import ProductCartItem from '../../components/Product/ProductCartItem';
 
 const Cart = () => {
   return (

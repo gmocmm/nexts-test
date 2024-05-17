@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import Header from '../components/Header';
+import CartProvider from '../contexts/cart';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
         <div className="px-[2em] py-[2em]">
           <Header />
           <section className="mt-[1em]">
-            {children}
+            <CartProvider>
+              {children}
+            </CartProvider>
           </section>
         </div>
       </body>

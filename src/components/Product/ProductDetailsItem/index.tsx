@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import TitleNavigation from '../../Navigation/TitleNavigation/index';
-import MainButton from '../../Buttons/MainButton/index';
+import TitleNavigation from '../../Navigation/TitleNavigation';
+import AddButton from '../../Cart/AddButton';
 import { IProduct } from '../../../interfaces/IProduct';
 
 type ProductDetailsItemProps = {
@@ -26,8 +26,8 @@ const ProductDetailsItem = ({ product }: ProductDetailsItemProps) => {
         <p className='text-[.9em] m-0 my-[1em] p-0'>{ product.description }</p>
         <p className='text-[.9em] m-0 p-0'>Nutrition: { product.calorie } calories</p>
         <div className='w-full text-center'>
-          <MainButton 
-            text='Add to cart'
+          <AddButton 
+            slug={ product.slug } 
           />
         </div>
       </div>
