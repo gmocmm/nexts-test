@@ -19,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <section className="px-[2em]">
-          {children}
-        </section>
+        <div className="px-[2em] py-[2em]">
+          <Header />
+          <section className="mt-[1em]">
+            {children}
+          </section>
+        </div>
       </body>
     </html>
   );

@@ -1,11 +1,11 @@
 import Image from 'next/image';
 const ProductListItem = () => {
   return (
-    <div className='bg-[#515151] rounded-[10px] overflow-hidden w-full max-w-[500px]'>
+    <div className='bg-[#515151] rounded-[10px] overflow-hidden w-full max-w-[550px]'>
       <div className='relative w-full'>
         <Image 
-          width={500}
-          height={500}
+          width={550}
+          height={550}
           src="https://images.unsplash.com/photo-1550259114-ad7188f0a967"
           alt=''
         />

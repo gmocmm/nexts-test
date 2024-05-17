@@ -1,8 +1,10 @@
+import DetailsWrapper from '../../components/DetailsWrapper';
+
 const Cart = () => {
   return (
-    <main>
-      <h1>Cart</h1>
-    </main>
+    <DetailsWrapper>
+      Cart
+    </DetailsWrapper>
   )
 }
 
