@@ -21,12 +21,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="px-[2em] py-[2em]">
-          <Header />
-          <section className="mt-[1em]">
-            <CartProvider>
+          <CartProvider>
+            <Header />
+            <section className="mt-[1em]">
               {children}
-            </CartProvider>
-          </section>
+            </section>
+          </CartProvider>
         </div>
       </body>
     </html>
