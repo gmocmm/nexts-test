@@ -7,7 +7,11 @@ type ProductListItemProps = {
 
 const ProductListItem = ({ product } : ProductListItemProps) => {
   return (
-    <div className='bg-[#515151] rounded-[10px] overflow-hidden w-full h-full max-w-[550px]'>
+    <div className='
+    bg-[#515151] rounded-[10px] overflow-hidden
+      w-full h-full max-w-[550px] scale-[1] 
+      hover:scale-[1.025] ease-in duration-200
+    '>
       <div className='relative w-full'>
         <Image 
           width={550}
