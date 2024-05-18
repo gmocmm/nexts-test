@@ -6,8 +6,6 @@ import MainButton from '../../Buttons/MainButton';
 import { CartContext } from '../../../contexts/cart';
 import { IProduct } from './../../../interfaces/IProduct';
 
-import 'react-toastify/dist/ReactToastify.css';
-
 type AddButtonProps = {
   product: IProduct
 }
@@ -30,14 +28,10 @@ const AddButton = ({ product }: AddButtonProps) => {
   }
 
   return (
-    <>
-      <MainButton 
-        text='Add to cart'
-        handler={ addProductHandler }
-      />
-
-      <ToastContainer />
-    </>
+    <MainButton 
+      text='Add to cart'
+      handler={ addProductHandler }
+    />
   )
 }
 
