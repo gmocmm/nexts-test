@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import Image from 'next/image';
-import CounterButton from '../../Cart/CounterButton';
+import { toast } from 'react-toastify';
 import { FaRegTrashAlt } from "react-icons/fa";
-import { IProduct } from '@/interfaces/IProduct';
+import CounterButton from '../../Cart/CounterButton';
+import { IProduct } from './../../../interfaces/IProduct';
+import { CartContext } from './../../../contexts/cart';
+
 
 type ProductCartItem = {
   product: IProduct,
@@ -9,6 +13,22 @@ type ProductCartItem = {
 }
 
 const ProductCartItem = ({ count, product }: ProductCartItem) => {
+  const { removeProduct } = useContext(CartContext);
+
+  const handleRemoveProduct = () => {
+    removeProduct(product);
+    toast.info(`Product ${product.name} removed successfully`, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })
+  }
+
   const price = new Intl.NumberFormat('en-US', { 
     style: 'currency', 
     currency: 'USD' }
@@ -38,9 +58,12 @@ const ProductCartItem = ({ count, product }: ProductCartItem) => {
         <span>
           { price }
         </span>
-        <span className='inline-block ml-[.5em]'>
+        <button 
+          className='inline-block ml-[.5em]'
+          onClick={ handleRemoveProduct }
+        >
           <FaRegTrashAlt />
-        </span>
+        </button>
       </div>
     </div>
   )

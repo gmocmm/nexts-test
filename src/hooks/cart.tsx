@@ -29,9 +29,22 @@ const useCart = () => {
     })
   }
 
+  const removeProduct = (product: IProduct) => {
+    setProducts((prevProducts) => {
+      const products = prevProducts.filter((item) => {
+        if(item.product.slug != product.slug) {
+          return item;
+        }
+      });
+
+      return products;
+    })
+  }
+
   return {
     products,
-    addProduct
+    addProduct,
+    removeProduct
   }
 }
 

@@ -11,7 +11,8 @@ type CartProps = {
 
 type CartContextProps = {
   products: CartProps[],
-  addProduct: (product: IProduct) => void
+  addProduct: (product: IProduct) => void,
+  removeProduct: (product: IProduct) => void
 }
 
 type CartProviderProps = {
@@ -20,14 +21,23 @@ type CartProviderProps = {
 
 export const CartContext = createContext<CartContextProps>({
   products: [],
-  addProduct: () => {}
+  addProduct: () => {},
+  removeProduct: () => {}
 });
 
 export default function CartProvider ({ children }: CartProviderProps) {
-  const { products, addProduct } = useCart();
+  const { 
+    products, 
+    addProduct, 
+    removeProduct 
+  } = useCart();
 
   return (
-    <CartContext.Provider value={{ products, addProduct }}>
+    <CartContext.Provider value={{ 
+      products, 
+      addProduct, 
+      removeProduct 
+    }}>
       { children }
     </CartContext.Provider>
   )
