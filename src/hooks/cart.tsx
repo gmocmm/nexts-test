@@ -1,27 +1,28 @@
 import { useState } from "react";
+import { IProduct } from '@/interfaces/IProduct';
 
 type CartProps = {
-  slug: string, 
+  product: IProduct, 
   count: number
 }
 
 const useCart = () => {
   const [products, setProducts] = useState<CartProps[]>([]);
 
-  const addProduct = (slug: string) => {
+  const addProduct = (product: IProduct) => {
     setProducts((prevProducts) => {
-      const existingProduct = prevProducts.find(item => item.slug === slug);
+      const existingProduct = prevProducts.find(item => item.product.slug === product.slug);
 
       if(existingProduct) {
         return prevProducts.map((item) => {
-          return item.slug === slug ? { ...item, count: item.count + 1 } : item
+          return item.product.slug === product.slug ? { ...item, count: item.count + 1 } : item
         })
       }
 
       return [
         ...prevProducts,
         { 
-          slug, 
+          product: product, 
           count: 1 
         }
       ]

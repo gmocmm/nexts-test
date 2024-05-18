@@ -27,7 +27,7 @@ const ProductDetailsItem = ({ product }: ProductDetailsItemProps) => {
         <p className='text-[.9em] m-0 p-0'>Nutrition: { product.calorie } calories</p>
         <div className='w-full text-center'>
           <AddButton 
-            slug={ product.slug } 
+            product={ product } 
           />
         </div>
       </div>

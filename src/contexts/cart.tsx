@@ -2,15 +2,16 @@
 
 import { ReactNode, createContext } from 'react'
 import useCart from '../hooks/cart'
+import { IProduct } from '@/interfaces/IProduct';
 
 type CartProps = {
-  slug: string, 
+  product: IProduct, 
   count: number
 }
 
 type CartContextProps = {
   products: CartProps[],
-  addProduct: (slug: string) => void
+  addProduct: (product: IProduct) => void
 }
 
 type CartProviderProps = {

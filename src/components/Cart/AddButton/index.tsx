@@ -3,16 +3,17 @@
 import { useContext } from 'react';
 import MainButton from '../../Buttons/MainButton';
 import { CartContext } from '../../../contexts/cart';
+import { IProduct } from '@/interfaces/IProduct';
 
 type AddButtonProps = {
-  slug: string
+  product: IProduct
 }
 
-const AddButton = ({ slug }: AddButtonProps) => {
+const AddButton = ({ product }: AddButtonProps) => {
   const { addProduct } = useContext(CartContext);
 
   const addProductHandler = () => {
-    addProduct(slug)
+    addProduct(product)
   }
 
   return (
