@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ProductListItem from '../components/Product/ProductListItem';
 import { IProduct } from './../interfaces/IProduct';
+import { useState } from 'react';
 
 type ProductsListViewProps = {
   products: IProduct[]

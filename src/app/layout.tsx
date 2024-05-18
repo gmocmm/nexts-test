@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from 'react-toastify';
+
 import "./globals.css";
 import 'react-toastify/dist/ReactToastify.css';
 
+import Loader from '../components/Loader';
 import Header from '../components/Header';
 import CartProvider from '../contexts/cart';
-import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +27,11 @@ export default function RootLayout({
         <div className="px-[2em] py-[2em]">
           <CartProvider>
             <Header />
-            <section className="mt-[1em]">
-              {children}
-            </section>
+            <Loader>
+              <section className="mt-[1em]">
+                {children}
+              </section>
+              </Loader>
             <ToastContainer />
           </CartProvider>
         </div>

@@ -11,7 +11,6 @@ const Cart = () => {
 
   useEffect(() => {
     const quantity = products.reduce((accumulator, currentValue) => {
-      console.log(currentValue.count);
       return accumulator + currentValue.count
     }, 0);
 

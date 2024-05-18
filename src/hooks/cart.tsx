@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IProduct } from '@/interfaces/IProduct';
 
 type CartProps = {
@@ -8,6 +8,23 @@ type CartProps = {
 
 const useCart = () => {
   const [products, setProducts] = useState<CartProps[]>([]);
+  const [loaded, setLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedProducts = localStorage.getItem('products');
+    
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts));
+    }
+
+    setLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if(loaded) {
+      localStorage.setItem('products', JSON.stringify(products));
+    }
+  }, [products, loaded]);
 
   const addProduct = (product: IProduct) => {
     setProducts((prevProducts) => {
@@ -26,7 +43,7 @@ const useCart = () => {
           count: 1 
         }
       ]
-    })
+    });
   }
 
   const removeProduct = (product: IProduct) => {
@@ -38,7 +55,7 @@ const useCart = () => {
       });
 
       return products;
-    })
+    });
   }
 
   const incrementProduct = (product: IProduct) => {
@@ -46,7 +63,7 @@ const useCart = () => {
       return prevProducts.map((item) => {
         return item.product.slug === product.slug ? { ...item, count: item.count + 1 } : item
       })
-    })
+    });
   }
 
   const decrementProduct = (product: IProduct) => {
@@ -54,7 +71,7 @@ const useCart = () => {
       return prevProducts.map((item) => {
         return item.product.slug === product.slug ? { ...item, count: item.count - 1 } : item
       })
-    })
+    });
   }
 
   return {
