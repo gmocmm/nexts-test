@@ -13,7 +13,7 @@ type ProductCartItem = {
 }
 
 const ProductCartItem = ({ count, product }: ProductCartItem) => {
-  const { removeProduct } = useContext(CartContext);
+  const { removeProduct, incrementProduct, decrementProduct } = useContext(CartContext);
 
   const handleRemoveProduct = () => {
     removeProduct(product);
@@ -27,6 +27,14 @@ const ProductCartItem = ({ count, product }: ProductCartItem) => {
       progress: undefined,
       theme: "colored",
     })
+  }
+
+  const handleIncrementProduct = () => {
+    incrementProduct(product);
+  }
+
+  const handleDecrementProduct = () => {
+    decrementProduct(product)
   }
 
   const price = new Intl.NumberFormat('en-US', { 
@@ -48,9 +56,21 @@ const ProductCartItem = ({ count, product }: ProductCartItem) => {
         <h4 className='text-[1.5em] font-bold'>{ product.name }</h4>
 
         <div className='flex text-[1.25em] ml-[2em] mr-[2em]'>
-          <CounterButton text='-' />
+          { 
+            count > 1 && (
+              <CounterButton 
+                handler={ handleDecrementProduct }
+                text='-' 
+              />
+            )
+          }
+
           <span className="inline-block mx-[.5em] my-[0] font-bold">{ count }</span>
-          <CounterButton text='+' />
+          
+          <CounterButton 
+            handler={ handleIncrementProduct }
+            text='+' 
+          />
         </div>
       </div>
 

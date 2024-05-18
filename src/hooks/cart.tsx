@@ -41,10 +41,28 @@ const useCart = () => {
     })
   }
 
+  const incrementProduct = (product: IProduct) => {
+    setProducts((prevProducts) => {
+      return prevProducts.map((item) => {
+        return item.product.slug === product.slug ? { ...item, count: item.count + 1 } : item
+      })
+    })
+  }
+
+  const decrementProduct = (product: IProduct) => {
+    setProducts((prevProducts) => {
+      return prevProducts.map((item) => {
+        return item.product.slug === product.slug ? { ...item, count: item.count - 1 } : item
+      })
+    })
+  }
+
   return {
     products,
     addProduct,
-    removeProduct
+    removeProduct,
+    incrementProduct,
+    decrementProduct
   }
 }
 
