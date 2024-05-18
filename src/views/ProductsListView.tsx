@@ -1,13 +1,34 @@
+'use client'
+
 import Link from 'next/link';
 import ProductListItem from '../components/Product/ProductListItem';
 import { IProduct } from './../interfaces/IProduct';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { FilterContext } from '@/contexts/filter';
 
 type ProductsListViewProps = {
   products: IProduct[]
 }
 
-const ProductsListView = async ({ products }: ProductsListViewProps) => {
+const ProductsListView = ({ products }: ProductsListViewProps) => {
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+  const { search } = useContext(FilterContext);
+
+  useEffect(() => {
+    if(search.length == 0) {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((product) => {
+          if(product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())) {
+            return product
+          }
+        }
+      ))
+    }
+
+  }, [search, products]);
+
   return (
     <div className='
       grid gap-[1em] 
@@ -18,7 +39,7 @@ const ProductsListView = async ({ products }: ProductsListViewProps) => {
     '>
 
       {
-        products.map((product) => {
+        filteredProducts.map((product) => {
           return (
             <Link
               key={`product-item-${product.slug}`}

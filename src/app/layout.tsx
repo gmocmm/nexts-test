@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 import CartProvider from '../contexts/cart';
+import FilterProvider from "../contexts/filter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,13 +27,15 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="px-[2em] py-[2em]">
           <CartProvider>
-            <Header />
-            <Loader>
-              <section className="mt-[1em]">
-                {children}
-              </section>
+            <FilterProvider>
+              <Header />
+              <Loader>
+                <section className="mt-[1em]">
+                  {children}
+                </section>
               </Loader>
-            <ToastContainer />
+              <ToastContainer />
+            </FilterProvider>
           </CartProvider>
         </div>
       </body>
